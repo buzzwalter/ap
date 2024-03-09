@@ -1,15 +1,18 @@
 # Define the image name
 IMAGE_NAME=jekyll-site
 
+# Path to your Jekyll project
+JEKYLL_PROJECT_PATH=/home/buzz/tmp/ap
+
 # Build the Docker image
 build:
-	docker build -t $(IMAGE_NAME) .
+	cd $(JEKYLL_PROJECT_PATH) && docker build -t $(IMAGE_NAME) -f /home/buzz/tmp/ap/Dockerfile .
+
 
 # Run the Docker container with volume for live editing
 run:
-	docker run --rm -p 4000:4000 -v "${PWD}:/usr/src/app" $(IMAGE_NAME)
+	docker run --rm -p 4000:4000 -v "$(JEKYLL_PROJECT_PATH):/usr/src/app" $(IMAGE_NAME)
 
-# Stop and remove the Docker container
+# Remove the Docker image
 clean:
-	docker stop $(IMAGE_NAME)
-	docker rm $(IMAGE_NAME)
+	docker rmi $(IMAGE_NAME)
