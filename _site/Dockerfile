@@ -11,10 +11,18 @@ RUN gem install jekyll bundler
 WORKDIR /usr/src/app
 
 # Copy the Gemfile and Gemfile.lock into the image
-COPY Gemfile ./
+COPY Gemfile Gemfile.lock ./
+
+# Install bundler
+RUN gem install bundler
 
 # Install any gems specified in the Gemfile
 RUN bundle install
+
+RUN gem cleanup
+
+# Copy the rest of the application code into the image
+COPY . .
 
 # Expose port 4000 to the outside world
 EXPOSE 4000

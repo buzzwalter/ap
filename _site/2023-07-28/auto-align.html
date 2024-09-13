@@ -32,6 +32,7 @@
         <ul>
           <li><a href="/ap/">About</a></li>
           <li><a href="/ap/portfolio/">Portfolio</a></li>
+          <li><a href="/ap/assets/buzz_walter_resume.pdf" target="_blank">Resume</a></li>
         </ul>
     </div>
   </nav>
@@ -43,21 +44,21 @@
 
   <p><img src="../assets/img/laleph.jpg" alt="Alt Text" /></p>
 <h2 id="overview">Overview</h2>
-<p>As a laser amplifies through a gain medium, it keeps extracting more energy from the excited states, but in the case of using crystals, thermal effects can play a substantial role in decreasing the output.  One of the main ways the thermal effects decrease the output is they change the alignment of the laser through thermal lensing, a process where the pressure imposed by temperature differences between areas of the crystal adjust the curvature of the surfaces that the laser is incident on. The alignment matters because for many gain media, including crystal gain media, there is an overlap between a pump laser, the energy source which can be viewed as a river, and the seed laser which can viewed as a generator that runs off with the useful energy.  One can have stability issues of either beam, but typically it is the seed laser which has issue because it passes through the gain media often multiple times to extract the most energy.   Specifically, with a cryogenically cooled system, the back of the crystal is nearly 77 K, the temperature of liquid nitrogen, whereas the front can heat up to several tens of degrees above this value.  The lensing however takes time to occur, so if you turned the laser on you could maintain a stable amplified output for a minimal amount of time.  However, this defeats the purpose of building a laser for applications since most applications for lasers involve keeping them on for longer time periods. A control system like this is critical because if it is necessary, it takes a system which is effectively unstable to indefinitely stable.</p>
+<p>In the fascinating world of pulsed lasers, generating a powerful, stable beam is a bit like conducting an orchestra: every element must be in perfect harmony. However, when using crystals as a gain medium to amplify laser light, thermal effects — akin to subtle, unwanted fluctuations in temperature — can disrupt this harmony. One of the main ways the thermal effects decrease the output is they change the alignment of the laser through thermal lensing, a process where the pressure imposed by temperature differences between areas of the crystal adjust the curvature of the surfaces that the laser light is incident on. The alignment matters because for many gain media, including crystal gain media, there is an overlap between a pump laser, the energy source which can be viewed as a river, and the seed laser which can viewed as a generator that runs off with the useful energy. One can have stability issues with either beam, but typically it is the seed laser which has an issue because it passes through the gain media often multiple times to extract the most energy. Specifically, with a cryogenically cooled system, the back of the crystal is nearly 77 K, the temperature of liquid nitrogen, whereas the front can heat up to several tens of degrees above this value. The lensing takes time to occur, so if you turned the laser on you could maintain a stable amplified output for a minimal amount of time. However, this defeats the purpose of building a laser for applications since most applications of lasers involve keeping them on for longer time periods. A control system like this is critical because if it is necessary, it takes a system which is effectively unstable to indefinitely stable.</p>
 
-<p>One solution to this problem is to introduce active feedback.  Active feedback involves measuring some signal in your system, processing it, and putting external energy into correcting it.  In this case it took the form of <a href="https://www.thorlabs.com/thorproduct.cfm?partnumber=PIAK10">piezo actuators</a> connected to a <a href="https://www.thorlabs.com/thorproduct.cfm?partnumber=KIM101">controller</a>, and a <a href="https://www.baslerweb.com/en/shop/aca1920-155um/">camera</a>, although cheaper options could’ve been used for this application.  In principle, alignment in optics takes four adjustment axes, two for adjusting where the beam is located in the plane of interest, and two for adjusting the angle of approach of the beam.  These axes take the form of the standard adjustment screws the one can find on mirror mounts of which each have two, so by attaching the piezo actuators to two well placed mirror mounts and controlling their adjustment using analyzed feedback from the camera, one can maintain the stability of the laser.  The form of the feedback is just a beam profile, but with the two different mirror being assigned different tasks, one for spatial alignment, and one for angular alignment, there is a need for extracting multiple inputs.  For this, the exterior portion of the beam was chosen for the angular input based on the nature of beam propagation and the fourier pair nature of ray trajectory and spatial location at the input image. For the input of the spatial adjustment, the interior of the beam was chosen. In both cases, the average of the distribution in the horizontal and vertical axis were chosen since these are directly connected to one of the piezo actuators for each mirror.</p>
+<p>One solution to this problem is to introduce active feedback.  Active feedback involves measuring some signal in your system, processing it, and putting external energy into correcting it.  In this case it took the form of <a href="https://www.thorlabs.com/thorproduct.cfm?partnumber=PIAK10">piezo actuators</a> connected to a <a href="https://www.thorlabs.com/thorproduct.cfm?partnumber=KIM101">controller</a>, and a <a href="https://www.baslerweb.com/en/shop/aca1920-155um/">camera</a>, although admitedly cheaper options could’ve been used, these were on hand. In principle, alignment in optics takes four adjustment axes, two for adjusting where the beam is located in the plane of interest, and two for adjusting the angle of approach of the beam. These axes take the form of the standard adjustment screws that one can find on mirror mounts, so by attaching the piezo actuators to two well placed mirror mounts and controlling their adjustment using analyzed feedback from the camera, one can maintain the stability of the laser. The form of the feedback is just a beam profile, but with the two different mirrors being assigned different tasks, one for spatial alignment, and one for angular alignment, it’s necessary to extract multiple inputs. For this, the exterior portion of the beam was chosen for the angular input based on the nature of beam propagation and the Fourier pair nature of ray trajectory and spatial location at the input image. For the input of the spatial adjustment, the interior of the beam was chosen. In both cases, the average of the distribution in the horizontal and vertical axes were chosen since these are directly connected to one of the piezo actuators for each mirror.</p>
 
 <h2 id="project-contributions">Project Contributions</h2>
 
-<p>Positioned the mirror mounts and motor controller, and camera as well as wrote the Matlab code analyzing the data frame to frame and controlling the motors.  Tested to fine-tune control parameters and orient axes.  Introduced triggering and simultaneous diagnostic data of the pointing and integrated energy intensity in version 2.0.</p>
+<p>Positioned the mirror mounts, motor controller, and camera as well as wrote the Matlab code for frame to frame data processing dictating motor control. Tested to fine-tune control parameters and orient axes. Introduced triggering and simultaneous diagnostic data of the pointing and integrated energy intensity in version 2.0.</p>
 
-<h2 id="code">Code</h2>
-
-<h2 id="tech">Tech</h2>
-<p>PID, Active Control, MIMO, Matlab, Cameras, Time-to-digital Converters</p>
+<h2 id="code-and-tech">Code and Tech</h2>
+<ul>
+  <li><strong>Tech</strong>: PID, Active Control, MIMO, Matlab, Cameras, Time-to-digital Converters</li>
+</ul>
 
 <h2 id="duration">Duration</h2>
-<p>An initial version was operational before the summer, but the final version wasn’t finished until half way through the summer</p>
+<p>An initial version was operational before the summer, but the final version wasn’t finished until half way through the summer.</p>
 
 
 </div>
@@ -75,7 +76,7 @@
 
     <footer>
       <span>
-        &copy; <time datetime="2024-03-09 12:28:28 +0000">2024</time> Buzz Walter. <a href="https://github.com/kssim/about-portfolio/">A.P</a> theme by kssim.
+        &copy; <time datetime="2024-09-13 14:33:10 +0200">2024</time> Buzz Walter. <a href="https://github.com/kssim/about-portfolio/">A.P</a> theme by kssim.
       </span>
     </footer>
   </body>

@@ -2,21 +2,23 @@
 layout: post
 title:  "Vision Interlock"
 info: "camera recognition based interlock"
-tech: "Yb:YAG/TiSa lasers, Matlab, vacuum systems, digital delay generators, Qt, C++, cryogenics"
+tech: "Yb:YAG/TiSa lasers, Matlab, Vacuum systems, Digital delay generators, Qt, C++, Cryogenics"
 type: XUV Lasers
 ---
-![Alt Text](../assets/img/vision_interlock.webp)
+![Alt Text](../assets/img/laser_profile.jpg)
 ## Overview 
- In any laser system typically the most important and expensive part is the gain medium, which is typically a crystal in the case of doped Yittrium-Aluminum-Granat (YAG) laser or Titanium-Sapphire lasers.  These crystal don't break in the normal sense, but rather they get damaged by the laser itself since the amplification process is a result of a laser passing through the crystal. If the beam is too small on the crystal or the energy becomes too great, or even if a spec of dust or dirt happens to land in the wrong place at the wrong time, the coating on the crystal can start to burn and cascading damage will occur throughout the system.  Also, depending on the application of the laser (if it is a pulsed laser), the time between shots can be on the order of milliseconds which means this cascading effect becomes so accelerated that human reaction times involved with shutting off the laser become a serious problem.  Current technology in cameras and electronics allow us to monitor the beam shot-to-shot, so as long as the computational time used in determining whether damage is starting to occur is slightly under a millisecond, the crystal can potentially live a longer life as well as the optics down and upstream from the beam line.       
+At the heart of any laser system lies its most crucial and often most expensive component: the gain medium. This component, typically a crystal like Yttrium-Aluminum-Garnet (YAG) or Titanium-Sapphire, is where the magic of amplification happens. However, it’s also where vulnerabilities lie. Damage to these crystals isn’t about them breaking in the traditional sense but rather getting damaged by the laser’s own light—be it from too concentrated a beam, excessive energy, or even a tiny speck of dust at the wrong place and time. Such damage not only harms the crystal but can cascade, wreaking havoc on the entire system.
+
+Given the millisecond timescales on which these lasers operate, especially pulsed lasers, human reaction times are far too slow to prevent damage in the event of a problem. This is where our project steps in, leveraging cutting-edge camera and electronics technology to monitor each laser shot in near-real-time. By analyzing shots faster than a millisecond, we aim to extend the life of these critical components and safeguard the surrounding optics.      
 
 ## Project Contributions
-I contributed to the C++ code mostly in algorithm development as well as built all the test environments using a beam splitter and wave plate with mirrors and a translatable stage.  The time-to-digital setup and triggering were also an important part of the project that I had to led in order for the system to even measure and collect data for testing, otherwise we wouldn't have been able to gain traction in developing the algorithm.  It actually turned out the first order damage prediction algorithms were much simpler than we thought, but we wouldn't have been able to find this fact without testing and gathering lots of data.     
+My role was pivotal in developing the algorithms that sit at the heart of our vision interlock system, mostly through C++ coding. I also crafted the test environments from scratch, employing a beam splitter, wave plate, mirrors, and a translatable stage for intricate setups. The triggering and timing, critical for data collection and testing, were areas I led, enabling our system to detect and predict damage before it became catastrophic.
 
-## Code
+Initially, we anticipated complex solutions would be needed. However, through extensive testing and data collection, we discovered the algorithms required to predict damage could be surprisingly simple—a revelation that could only have been reached with thorough experimentation.
 
-## Tech
-Yb:YAG/TiSa lasers, Matlab, vacuum systems, digital delay generators, Qt, C++, Zeemax, and cryogenics
+## Code and Tech
+* **Tech**: Yb:YAG/TiSa lasers, Matlab, vacuum systems, digital delay generators, Qt, C++, Zeemax, and cryogenics
 
 
 ## Duration
-About 2-3 months managing an REU intern who helped in the process.
+Over 2-3 months, I managed an REU intern, guiding them through the process and contributing significantly to our progress.

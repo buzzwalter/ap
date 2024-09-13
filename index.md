@@ -8,7 +8,7 @@ layout: about
 <br/>
 
 # Places I've Ventured in My Career
-* Arndt Group (2023/09 ~ )
+* Arndt Group (2023/09 ~ 2024/05)
   * Matter-wave Interferometry
     * Conducted laser desorption studies on photo-cleavables to understand potential control mechanism for collimation in Talbot-Lau interfometry based Matter-wave interference experiments. 
 * XUV Laser/L-ALEPH (2023/02 ~ 2023/08)
