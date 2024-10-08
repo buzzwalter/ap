@@ -19,7 +19,61 @@
 
   <!-- Google Analytics -->
   
+  <script>
+      (function(i, s, o, g, r, a, m) {
+          i['GoogleAnalyticsObject'] = r;
+          i[r] = i[r] || function() {
+              (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+          a = s.createElement(o),
+              m = s.getElementsByTagName(o)[0];
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
+      ga('create', 'G-14C0NNS6FY', 'auto');
+      ga('send', 'pageview');
+
+  </script>
+  
+
+  
+  <!-- MathJax script for embedding LaTex -->
+  <script type="text/x-mathjax-config">
+    MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        equationNumbers: { autoNumber: "all" } 
+      },
+      options: {
+        displayAlign: "center"  // Center equations
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+   
+  <!-- <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        processEscapes: true
+      },
+      displayAlign: "center",  // Center equations
+      TeX: {
+        equationNumbers: { 
+          autoNumber: "all"  // Automatically number all displayed equations
+        }
+      }
+    });
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+   -->
+  
 </head>
 
 
@@ -32,7 +86,8 @@
         <ul>
           <li><a href="/ap/">About</a></li>
           <li><a href="/ap/portfolio/">Portfolio</a></li>
-          <li><a href="/ap/assets/buzz_walter_resume.pdf" target="_blank">Resume</a></li>
+          <li><a href="/ap/assets/buzz_walter_resume.pdf/" target="_blank">Resume</a></li>
+          <li><a href="/ap/inquiries/">Inquiries</a></li>
         </ul>
     </div>
   </nav>
@@ -49,6 +104,7 @@
 
   <div class="content">
     <h1 id="about-me">About Me</h1>
+
 <p>I’m an experimental physicist and programming enthusiast.  Some of my interests include quantum computing, scientific computing, and experimental control systems.  The opportunities that computing brings to physics both excite me and motivate me to look for big ideas that seem to be missed in the whirlwind of big data and the modern computing infrastructure.  On the experimental side of things, I sometimes just get tired of sitting in a chair, and the peace and quite of humming vacuum pumps and hardware work re-center me.</p>
 
 <p><br /></p>
@@ -69,14 +125,13 @@
       <li>High repitition rate kW average power Nd:YAG laser system.
         <ul>
           <li>Collaborated with engineers in designing and building vision interlock system to spot damage at kHz frame rate.</li>
-          <li>Built diagnostics and auto-align systems into the beam-line to improve stability and performance.</li>
+          <li>Built diagnostics and auto-align systems into the beam-line to improve stability and performance.
+<br /></li>
         </ul>
       </li>
     </ul>
   </li>
 </ul>
-
-<p><br /></p>
 
 <h1 id="interests-that-fuel-my-curiousity">Interests That Fuel My Curiousity</h1>
 <p>Quantum Info./Computing<br />
@@ -168,7 +223,7 @@ Control Systems</p>
 
     <footer>
       <span>
-        &copy; <time datetime="2024-09-13 14:33:10 +0200">2024</time> Buzz Walter. <a href="https://github.com/kssim/about-portfolio/">A.P</a> theme by kssim.
+        &copy; <time datetime="2024-10-07 22:01:35 +0000">2024</time> Buzz Walter. <a href="https://github.com/kssim/about-portfolio/">A.P</a> theme by kssim.
       </span>
     </footer>
   </body>

@@ -2,7 +2,7 @@
 title: buzzwalter 🐝
 baseurl: "/ap"
 url: "http://localhost:4000"
-google_analytics: # Tracking ID, e.g. "UA-000000-01"
+google_analytics: G-14C0NNS6FY # Tracking ID, e.g. "UA-000000-01".  The id given to my GoDaddy is "33c84d44-ffe3-4004-8fe8-de64977ab3b2"
 
 # Author
 author:
@@ -47,7 +47,7 @@ sass:
 
 # Gems
 plugins:
-  - jekyll-paginate
+  - jekyll-paginate-v2
 
 # Permalinks
 permalink: /:year-:month-:day/:title
@@ -60,3 +60,24 @@ exclude:
   - "LICENSE"
   - "READE.md"
   - "screenshot.png"
+
+pagination:
+  enabled: true
+  collections:
+    portfolio:
+      per_page: 5
+      permalink: "/portfolio/:num/"
+    inquiries:
+      per_page: 5
+      permalink: "/inquiries/page:num/"
+
+collections:
+  inquiries:
+    output: true
+    permalink: /inquiries/:title/
+
+paginate_inquiries:
+  enabled: true
+  per_page: 5
+  title: "Inquiries Page: :num"
+  permalink: /inquiries/page:num/
