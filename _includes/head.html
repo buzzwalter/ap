@@ -7,7 +7,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/fontawesome-all.min.css">
 
@@ -37,20 +37,25 @@
 
   
   <!-- MathJax script for embedding LaTex -->
-  <script type="text/x-mathjax-config">
-    MathJax = {
-      tex: {
+  <script type="text/javascript" async 
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML">
+  </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
         inlineMath: [["$", "$"], ["\\(", "\\)"]],
         displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-        equationNumbers: { autoNumber: "all" } 
+        processEscapes: true
       },
-      options: {
-        displayAlign: "center"  // Center equations
+      displayAlign: "center",
+      TeX: {
+        equationNumbers: { 
+          autoNumber: "all"  // Automatically number all displayed equations
+        }
       }
-    };
+    });
   </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
    
   <!-- <script type="text/x-mathjax-config">
     MathJax.Hub.Config({

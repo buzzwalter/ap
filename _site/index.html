@@ -10,7 +10,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="/ap/assets/css/main.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" type="text/css" href="/ap/assets/css/fontawesome-all.min.css">
 
@@ -40,20 +40,25 @@
 
   
   <!-- MathJax script for embedding LaTex -->
-  <script type="text/x-mathjax-config">
-    MathJax = {
-      tex: {
+  <script type="text/javascript" async 
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML">
+  </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
         inlineMath: [["$", "$"], ["\\(", "\\)"]],
         displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-        equationNumbers: { autoNumber: "all" } 
+        processEscapes: true
       },
-      options: {
-        displayAlign: "center"  // Center equations
+      displayAlign: "center",
+      TeX: {
+        equationNumbers: { 
+          autoNumber: "all"  // Automatically number all displayed equations
+        }
       }
-    };
+    });
   </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
    
   <!-- <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -223,7 +228,7 @@ Control Systems</p>
 
     <footer>
       <span>
-        &copy; <time datetime="2024-10-07 22:01:35 +0000">2024</time> Buzz Walter. <a href="https://github.com/kssim/about-portfolio/">A.P</a> theme by kssim.
+        &copy; <time datetime="2024-10-19 11:30:49 +0000">2024</time> Buzz Walter. <a href="https://github.com/kssim/about-portfolio/">A.P</a> theme by kssim.
       </span>
     </footer>
   </body>

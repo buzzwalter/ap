@@ -10,7 +10,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="/ap/assets/css/main.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700">
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" type="text/css" href="/ap/assets/css/fontawesome-all.min.css">
 
@@ -40,20 +40,25 @@
 
   
   <!-- MathJax script for embedding LaTex -->
-  <script type="text/x-mathjax-config">
-    MathJax = {
-      tex: {
+  <script type="text/javascript" async 
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML">
+  </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
         inlineMath: [["$", "$"], ["\\(", "\\)"]],
         displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-        equationNumbers: { autoNumber: "all" } 
+        processEscapes: true
       },
-      options: {
-        displayAlign: "center"  // Center equations
+      displayAlign: "center",
+      TeX: {
+        equationNumbers: { 
+          autoNumber: "all"  // Automatically number all displayed equations
+        }
       }
-    };
+    });
   </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
    
   <!-- <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -94,16 +99,198 @@
 
     <main>
       <div class="post">
-  <h2 class="post-title">Exploring Fourier Transforms</h2>
+  <h2 class="post-title">Pauli's Hydrogen Atom</h2>
   <div class="post-line"></div>
 
-  <p>A fourier transform is a mathematical operation that converts a function from the time domain to the frequency domain. Here’s an example using the display mode of the MathJax package</p>
+  <p>During an undergraduate quantum physics course, one is often expected to go through the solution of the hydrogen atom in painstaking detail using analytical methods.  The graduate level version of a quantum mechanics course is much closer to the original matrix mechanics approach, and the solutions do a good job of unveiling the ideas of this subject, namely its algebraic features.  In relation to the hydrogen atom, there’s one particular solution, first achieved by Pauli and then elaborated on by Fock, which is especially interesting. It still leaves the radial equation to analytical methods, but tackles the spherical harmonics elegantly. An aspect of this solution is contained in the problem I received on a problem set for a graduate level quantum mechanics class I took.</p>
 
-<p>\[
-     \frac{1}{2\pi} \int_{-\infty}^{\infty} f(t) e^{-i\omega t} dt \label{eq:fourier}.
+<p><strong>Problem 7.4.</strong> The Lenz-Runge vector, which you know being a constant of motion for the classic 2-body Coulomb problem, has the form
+\[
+\vec{A} = \frac{1}{2m} \big( \vec{P} \times \vec{L} - \vec{L} \times \vec{P} \big) - \frac{1}{4\pi \epsilon_0} \frac{e^2}{|\vec{X}|} \vec{X} \label{eq:lenz-runge}
 \]</p>
 
-<p>This fourier transform concerns the two conjugate variables \(\omega\) and \(t\).  This can be seen in equation (\ref{eq:fourier}) as a function of \(t\) and \(\omega\).</p>
+<p><strong>a.</strong> Show that $\vec{A}$ is an Hermitian operator and, like in the classical theory, a constant of motion.</p>
+
+<p><strong>Solution.</strong> The first part of this problem can be seen by taking the conjugate transpose of the above operator, 
+\[  <br />
+\vec{A}^\dagger = \frac{1}{2m} \big( \vec{P} \times \vec{L} - \vec{L} \times \vec{P} \big)^\dagger - \big(\frac{1}{4\pi \epsilon_0} \frac{e^2}{|\vec{X}|} \vec{X}\big)^\dagger \label{eq:lenz-runge-conj}
+\]</p>
+
+<p>\[
+    \vec{A}^\dagger = \frac{1}{2m} \big(- \vec{L} \times \vec{P} + \vec{P} \times \vec{L} \big) - \frac{1}{4\pi \epsilon_0} \frac{e^2}{|\vec{X}|} \vec{X} \label{eq:lenz-runge-conj-1}
+\]
+using the fact that $\vec{L} \times \vec{P}$ is anti-hermitian.  Consequently, the operator $\vec{A}=\vec{A}^\dagger$, so it is hermitian.</p>
+
+<p>For the second more challenging part we’ll need to brake the calculation down to tensor notion and use the classic identity for the product of levi-civita tensors,</p>
+
+<p>\[
+    \epsilon_{ijk}\epsilon_{lmk} = \delta_{il}\delta_{jm} - \delta_{im}\delta_{lj}. \label{eq:triple-product}
+\]
+From this we can simplify the first term in Eq. $\ref{eq:lenz-runge}$ as 
+\[
+    \vec{P} \times \vec{L} - \vec{L} \times \vec{P} = \epsilon_{ijk}P_i \epsilon_{lmj}R_lP_m - \epsilon_{ijk}\epsilon_{lmi}R_lP_{m}P_{j}  \label{eq:first-term}
+\]
+    which simplifies to 
+\[
+    \vec{P} \times \vec{L} - \vec{L} \times \vec{P} = (\delta_{im}\delta_{kl} - \delta_{il}\delta_{km})P_iR_lP_m - (\delta_{jl}\delta_{km} - \delta_{jm}\delta{kl})R_l P_m P_j,
+\]
+and again further to 
+\[
+    \vec{P} \times \vec{L} - \vec{L} \times \vec{P} = P_iR_kP_i - P_iR_iP_k - R_jP_kP_j + R_kP_jP_j.
+\]
+Using the canonical commutation relation while paying attention to the indices summed over, we can rewrite the last two terms giving
+\[
+    \vec{P} \times \vec{L} - \vec{L} \times \vec{P} = P_iR_kP_i - P_iR_iP_k - (P_jR_j + 3i\hbar)P_k + (P_jR_k + i\hbar\delta_{jk})P_j
+\]
+which yields in turn
+\[
+    \vec{P} \times \vec{L} - \vec{L} \times \vec{P} = 2(P_iR_kP_i - P_iR_iP_k)  - 2i\hbar P_k = 2 \big( \vec{P}\times \vec{L} - 2i\hbar P_k \big). \label{eq:simplified-lrl}
+\]
+For the rest of the calculations, it will be of use to introduce non-dimensionalized units setting the mass and planck’s constant to 1.  In quantum mechanics, an operator which is a constant of motion commutes with the hamiltonian, which in turn specifies that the expected value of its time derivative is 0 via the Ehrenfest theorem. We then set out to show that the Runge-Lenz vector operator commutes with the hamiltonian to solve the second problem. We can then write the commutator for the hamiltonian as 
+\[
+    [H,\vec{A}] = [\frac{P^2}{2} + \vec{R}V,\vec{P} \times \vec{L} - i\vec{P}]. \label{eq:hamiltonian-lrl}
+\]
+This of course results in four terms only two of which don’t resolve to 0 since $[V,r_k V] = 0$ and 
+\[
+    [P^2,\vec{P} \times \vec{L} - i \vec{P}] = [P^2,\vec{P}] \times \vec{L} + \vec{P} \times [P^2,\vec{L}] -i[P^2,\vec{P}]
+\]
+\[
+    [P^2,\vec{P} \times \vec{L} - i \vec{P}] = [P^2,\vec{P}] \times \vec{L} + \vec{P} \times [P^2,\vec{R}]\times \vec{P} + \vec{R} \times [P^2,\vec{P}] -i[P^2,\vec{P}]
+\]
+which vanishes since $[P^2,R] = -2i\vec{P}$ and any vector crossed with itself vanishes.  Consequently, we are only left with the cross terms in Eq. $\ref{eq:hamiltonian-lrl}$, that is 
+\[
+    [H,\vec{A}] = \frac{1}{2}[P^2,\vec{R}V]+[V,\vec{P} \times \vec{L} - i \vec{P}] \label{eq:hamiltonian-two-terms}.
+\]
+Starting with the first term, we see 
+\[
+    [P^2,\vec{R}V] = [P^2,\vec{R}]V + \vec{R} [P^2,V] \label{eq:second-term}
+\]
+The first commutator on the right-hand side is already clear, but the second results in 
+\[
+    [P^2,V] = -[V,P_j]P_j - P_j[V,P_j] \label{eq:second-term-2}
+\]
+with $[V,P_j] = -iV^3R_j$ based on the way the gradient operator acts on the coulomb potential. Therefore Eq. $\ref{eq:second-term}$ becomes
+\[
+    [P^2,\vec{R}V] = -2iP_kV + iR_k(V^3R_jP_j + P_jR_jV^3)
+\]
+\[
+    [P^2,\vec{R}V] = -2iP_kV + iR_k(V^3R_jP_j + R_jP_jV^3 - 3iV^3)
+\]
+\[
+    [P^2,\vec{R}V] = -2iP_kV + iR_k(V^3R_jP_j + R_jV^3P_j - R_j[V^3,P_j] - 3iV^3)
+\]
+using the canonical commutator relation and setting up $[V^3,P_j]$. In particular this latter commutator on the right-hand side can be expanded and computed in terms of the commutator in Eq. $\ref{eq:second-term-2}$ as
+\[
+    [V^3,P_j] = [V,P_j]V^2+V[V,P_j]V+V^2[V,P_j] = -3iV^5\vec{R_j},
+\]
+so Eq. $\ref{eq:second-term}$ reduces further to 
+\[
+    [P^2,\vec{R}V] = -2iP_kV + iR_k(V^3R_jP_j + R_jV^3P_j + 3iR_jR_jV^5 - 3iV^3).
+\]
+Noting $R^2V^2=1$ and $[V,R]=0$, of course, the last two terms cancel, and we have
+\[ 
+    [P^2,\vec{R}V] = -2iP_kV + 2iR_kV^3R_jP_j  <br />
+\]
+Now, using one last commutation that sets the equation up nicely before returning to Eq. $\ref{eq:hamiltonian-two-terms}$ we have
+\[
+    [P^2,\vec{R}V] = -2iVP_k + 2V^3R_k + 2iR_kV^3R_jP_j. \label{eq:second-term-final}
+\]
+Moving onto to the last term, we see that 
+\[
+    [V,\vec{P}\times \vec{R} - i\vec{P}] = [V,\vec{P}] \times \vec{L} + \vec{P} \times ([V,\vec{R}] \times \vec{P}) + \vec{P} \times (\vec{R} \times [V,\vec{P}]) - i[V,\vec{P}].
+\]
+The first term and last term remain while the middle two go away due colinearity ($[\vec{V},\vec{P}] \propto \vec{R}$) and the fact that $[V,R]=0$, leaving
+\[
+    [V, \vec{P} \times \vec{R} - i \vec{P} ] = -i V^3 \vec{R} \times \vec{L} - \vec{R} V^3. \label{eq:first-term-final}
+\]
+Putting Eq. $\ref{eq:first-term-final}$ and Eq. $\ref{eq:second-term-final}$ back into $\ref{eq:hamiltonian-two-terms}$ we have
+\[
+    [H, \vec{A}] =  -iVP_k + V^3 R_k + iR_kV^3R_jP_j - iV^3 \epsilon_{ijk} R_i \times L_j - R_kV^3
+\]
+\[
+    [H, \vec{A}] =  -iVP_k + iR_kV^3R_jP_j - iV^3 \epsilon_{ijk} R_i \epsilon_{lmj}R_lP_m
+\]
+\[
+    [H, \vec{A}] =  -iVP_k + iR_kV^3R_jP_j + iV^3 (\delta_{il}\delta_{km} - \delta_{im}\delta_{kl}) R_i R_lP_m 
+\]
+\[
+    [H, \vec{A}] =  -iVP_k + iR_kV^3R_jP_j + iV^3R_i R_iP_k - iV^3R_iR_kP_i 
+\]
+\[
+    [H, \vec{A}] =  -iVP_k + iR_kV^3R_jP_j + iVP_k - iV^3R_iR_kP_i =0
+\]
+as was to be shown.</p>
+
+<p><strong>b.</strong> Show the relation $\vec{A} \cdot \vec{L} = \vec{L} \cdot \vec{A} = 0 $, so the Lenz-Runge vector and the orbital angular momentum are orthogonal at the operator level.</p>
+
+<p><strong>Solution.</strong> This follows rather straightforwardly from the definition of $\vec{L}$ and its necessary geometric orthogonality to both $\vec{P}$ and $\vec{R}$. Using the simplification in the previous problem from Eq. $\ref{eq:simplified-lrl}$ we have
+\[
+    \vec{A} \cdot \vec{L} =  \big(\vec{P} \times \vec{L} \big) \cdot \vec{L} - i\vec{P} \cdot \vec{L}  + V \vec{R} \cdot \vec{L} = 0.
+\]
+Acting with the operator from the other side, the geometric orthogonality remains the same, so the result follows still and $\vec{L} \cdot \vec{A} = 0$.</p>
+
+<p>Now, these problems were relatively straightfoward, although the first one is hard to find explicitly shown anywhere.  It has the feeling of an exercise left to the reader, but for whatever reason there are very few solutions that can be found on the web or in sources. Why does it actually matter though that these two vectors are orthogonal at the operator level?  In particular, we have two vector operators which commute with the hamiltonian and with each other component-wise.  These vector operators bare the resemblance of the ladder operators for the traditional hydrogen atom solution using ladder operators formed by $L_x$ and $L_y$ which commute with $L_z$.  The difference in this case is that it already incorporates the additional symmetry element of the Runge-Lenz vector from the start which gives a broader picture of the algebra present.  We can explicitly uncover the accidental degeneracy in observation of this broader algebraic picture.</p>
+
+<p>Already, the solution for the hydrogen atom taken from an undergraduate physics course contains the three quantum numbers and their associated complete set of commuting observables, $L_z$, $L^2$, and $H$.  Now, we see that $\vec{A}$ commutes with $H$, and in principle if we restrict ourselves to $A_z$ it will even commute with $L_z$, but it does not in fact commute with $L^2$ which means it doesn’t fit into the discussion of the degeneracy of this solution set. In particular, the degeneracy alludes to the existence of an additional symmetry element which doesn’t produce another quantum number because it can be written in terms of the existing set of commuting observables. However, that symmetry element isn’t really a true symmetry element with respect to the chosen basis if it changes eigenvectors of one the operators.  With the standard set of observables chosen here this symmetry element ends up being the $A^2$ operator, and we can see not only because it’s the natural casimir element of an $SU(2)$ subgroup, but also explicitly from commutator relations. Naturally $[H,A^2]=0$ because $[H,\vec{A}]=0$. As for $L_z$, we’ve claimed it commutes with $A_z$, but we can take a closer look at where this comes from.</p>
+
+<p>In particular, any vector operator (hermitian), $\vec{V}$, has the following commutator relation
+\[
+    [V_i,L_j] = i \epsilon_{ijk} \hbar V_k . \label{eq:vector-commutator}
+\]
+This can be seen as a consequence of the fact that the angular momentum operators are generators of the rotation group. In particular, we can write the differential rotation in the context of the differential translation, considering the unitary operators associated with the rotation on the operator, i.e.
+\[
+    T_k ( \epsilon_{ijk} d \theta ) V_i = R_j (d \theta ) V_i \tilde{R_j} (d \theta ) \label{eq:unitary-rotation}
+\]
+\[
+    V_i + \epsilon_{ijk} d \theta V_k = (1 + i \frac{d \theta }{ \hbar } L_j) V_i (1 - i d \theta \frac{L_j}{ \hbar }) + …
+\]
+    Now the second order terms we can disregard, and the $d \theta$ term we can focus on giving
+\[
+    \epsilon_{ijk}d \theta V_k = -i \frac{d \theta}{\hbar} (V_iL_j - L_jV_i) 
+\]
+which implies that 
+\[
+    [V_i,L_j] = i \hbar \epsilon_{ijk} V_k.
+\]
+Now, to be careful, in this demonstration $R_i$ will generate infinitesimal rotations in both the other orthogonal directions according to the sign of the levi-cevita symbol, but given we are transforming a linearly independent component indexed by $j$ in Eq. $\ref{eq:unitary-rotation}$ we only have the $k$ component acting.</p>
+
+<p>Eq. $\ref{eq:vector-commutator}$ necessarily implies that any two like components of $\vec{A}$ and $\vec{L}$ will commute, which includes $L_z$ and $A_z$.  We are interested in using this fact, however, to look at the commutator $[L_z,A^2]$.  We are then reduced to 
+\[
+    [L_z,A^2] = [L_z,A_z^2] + [L_z,A_y^2] + [L_z,A_z^2] = 0 + [L_z,A_y]A_y + A_y[L_z,A_y] + [L_z,A_x]A_x + A_x[L_z,A_x]
+\]
+\[
+    [L_z,A^2] = -iA_xA_y - iA_yA_x + iA_yA_x + iA_xA_y = 0.
+\]   <br />
+It’s worth noting that this is independent of the component which is chosen, i.e. it could have been $L_y$ we chose instead of $L_z$. This means that fully $[\vec{L},A^2]=0$, and in fact $[L^2,A^2]=0$ also since 
+\[
+    [L^2,A^2] = [L_j,A^2]L_j + L_j[L_j,A^2] = 0.
+\]
+This effectively shows that there is an additional symmetry present, but we still don’t fully understand why it should explicitly show up in the energy levels for instance and not one of the other quantum numbers.  This is directly related to how the square of the Runge-Lenz vector operator can be used with the square of the angular momentum vector operator to produce the hamiltonian operator. In particular, we know that the energy levels of the system follow an inverse square relation to the principle quantum number – this was known even from the time of the Bohr model –
+\[
+    E = \frac{-1}{2n^2}. \label{eq:principle-energy}
+\]
+Now, revisiting our two vector operators, this is where the complete symmetry of the hydrogen atom really arises. The standard symmetry of the hyrdogen atom is $SO(4)$, but it’s always solved completely in terms of the angular momentum operator giving the appropriate formulae.  The degeneracy of the energy levels being $n^2$ is never fully fleshed out. Yes, there’s rotational symmetry but if it were just one rotational symmetry group involved there wouldn’t be a square factor in the energy degeneracy.  This square factor comes from the fact there are two symmetries present, and because $\vec{A}$, and in particular $A^2$ (like $L^2$), has similar commutator relations to angular momentum, it constitutes another $SU(2)$ symmetry element.  The eigenvalues for the square operator of this type of lie algebra always have the form $(2j_A+1)$ which is recognizable for momentum since it is the eigenvalue returned by $L^2$.  With the degeneracy being entirely governed by $n^2$ we see that there’s an indifference to the $L^2$ and $A^2$ $SU(2)$ symmetries since only one quantum number appears in the degeneracy. For the irreducible representation of $SO(4)$ as $SU(2)\times SU(2)$ the total degeneracy is the product of the two $SU(2)$ degeneracies, i.e.
+\[
+    (2j_A+1)(2l+1) = n^2 \label{eq:degeneracy-total}
+\] 
+but with the equal footing of both $j_A$ and $l$ in the coulomb potential, we must have
+\[
+    j_A = l = \frac{n-1}{2}. \label{eq:degeneracy-relation}
+\] 
+Furthermore, this representation of the symmetry group tells us how the casimir elements of the subgroups are related to the associated quantum numbers.  The casimir element of $SO(4)$ is given by the sum of the subgroup casimir elements, and consequently, within the group, this casimir element is equal to the sum of their quantum numbers. Substituting Eq. $\ref{eq:degeneracy-relation}$ we get 
+\[
+    C_{so4} = A^2 + L^2 = j_A(j_A+1) + l(l+1) = 2(\frac{n-1}{2}(\frac{n-1}{2} + 1)) = n^2 - 1
+\]
+which gives us a relation of the energy in terms of the $A^2$ and $L^2$ operators.</p>
+
+<p>This representation isn’t necessarily talked about so much even at the graduate level depending on what one is doing because it’s not central to the application of the theory. In most applications, the symmetry present here, $SO(4)$, is relaxed by, e.g. a magnetic field. This adds relevance for the $L_z$ operator and $m$ quantum number if the field is applied along the $z$ direction as is very common in real many bodied systems.  That being said, it doesn’t fully describe the central symmetries of the hydrogen atom solution (and therefore also the periodic table to some extent) the way the irreducible representation $SU(2) \times SU(2)$ does. Ultimately, it stands to reason having some shorter form outline of this tied to a regular practice problem could be a useful resource for those interested in understanding the algebraic structure of the hydrogen atom, and moreover really coulomb potential since that’s where the symmetry comes from.</p>
+
+<h2 id="references">References</h2>
+<ol>
+  <li>Landau, L. D., &amp; Lifshitz, E. M. (1977). <em>Quantum Mechanics: Non-Relativistic Theory</em> (3rd ed.). Pergamon Press.</li>
+  <li>Pauli, Z. Physik 36, 336 (1926).</li>
+  <li>Fock, Z. Physik 98, 145 (1935).</li>
+</ol>
 
 
 
@@ -120,7 +307,7 @@
 
     <footer>
       <span>
-        &copy; <time datetime="2024-10-07 22:01:35 +0000">2024</time> Buzz Walter. <a href="https://github.com/kssim/about-portfolio/">A.P</a> theme by kssim.
+        &copy; <time datetime="2024-10-19 11:30:49 +0000">2024</time> Buzz Walter. <a href="https://github.com/kssim/about-portfolio/">A.P</a> theme by kssim.
       </span>
     </footer>
   </body>
