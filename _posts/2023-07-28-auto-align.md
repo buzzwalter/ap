@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Active Control Auto-align"
-info: "created an auto-align system for "
+info: "created an auto-align system for a seed laser"
 tech: "PID, Active Control, MIMO, Matlab, Cameras, Time-to-digital Converters"
 type: XUV Lasers
 ---

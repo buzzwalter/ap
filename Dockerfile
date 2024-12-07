@@ -24,6 +24,8 @@ RUN gem cleanup
 # Copy the rest of the application code into the image
 COPY . .
 
+# 
+
 # Expose port 4000 to the outside world
 EXPOSE 4000
 
